@@ -22,10 +22,13 @@ export default `
     overflow-x: hidden;
     overflow-y: auto;
     font-family: ${fonts.sansSerif};
-    color: ${colors.black};
-    background-color: ${colors.white};
+    color: ${colors.white};
+    background-color: ${colors.bg};
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+
+    margin: 0;
+    padding: 0;
   }
 
   a {

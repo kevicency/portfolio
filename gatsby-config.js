@@ -1,15 +1,13 @@
-'use strict'
-
 module.exports = {
   siteMetadata: {
-    title: 'gatsby-starter-typescript-plus',
-    description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
-    keywords: 'gatsbyjs, gatsby, javascript, sample, something',
-    siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+    title: 'Kevin Mees | Portfolio',
+    description: "I'm Kevin Mees, a Full Stack Developer, Speaker and Open Source Contributor",
+    keywords: '',
+    siteUrl: 'https://kevinmees.com',
     author: {
-      name: 'Resi Respati',
-      url: 'https://twitter.com/resir014',
-      email: 'resir014@gmail.com'
+      name: 'Kevin Mees',
+      url: 'https://github.com/kmees',
+      email: 'kev.mees@gmail.com'
     }
   },
   plugins: [
@@ -18,6 +16,18 @@ module.exports = {
       options: {
         name: 'content',
         path: `${__dirname}/src/content`
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        custom: {
+          families: ['Road Roage', 'Streamster'],
+          urls: ['/webfonts.css']
+        },
+        google: {
+          families: ['Cabin']
+        }
       }
     },
     {

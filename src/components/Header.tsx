@@ -1,16 +1,15 @@
-import * as React from 'react'
 import styled from '@emotion/styled'
-import { transparentize } from 'polished'
 import { Link } from 'gatsby'
-
-import { heights, dimensions, colors } from '../styles/variables'
+import { rgba } from 'polished'
+import * as React from 'react'
+import { colors, heights } from '../styles/variables'
 import Container from './Container'
 
 const StyledHeader = styled.header`
   height: ${heights.header}px;
-  padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.brand};
-  color: ${transparentize(0.5, colors.white)};
+  padding: 0 1rem;
+  background-color: ${colors.bgAlt};
+  color: ${rgba(colors.white, 0.5)};
 `
 
 const HeaderInner = styled(Container)`

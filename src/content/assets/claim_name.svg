@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="920" height="273" viewBox="0 0 920 273">
+  <defs>
+    <filter id="claim_name" x="0" y="0" width="920" height="273" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#0d0221"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#claim_name)">
+    <text id="claim_name-2" data-name="claim_name" transform="translate(46 181)" fill="#f6019d" font-size="144" font-family="RoadRage, Road Rage"><tspan x="0" y="0">Kevin Mees</tspan></text>
+  </g>
+</svg>
