@@ -1,5 +1,5 @@
-import { dimensions, fonts, colors, breakpoints } from './variables'
 import { getEmSize } from './mixins'
+import { breakpoints, colors, dimensions, fonts } from './variables'
 
 export default `
   html {
@@ -20,7 +20,7 @@ export default `
   body {
     width: 100%;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     font-family: ${fonts.sansSerif};
     color: ${colors.black};
     background-color: ${colors.white};
@@ -29,7 +29,7 @@ export default `
   }
 
   a {
-    color: ${colors.brand};
+    color: ${colors.teal};
     text-decoration: none;
 
     &:hover,
@@ -62,7 +62,7 @@ export default `
 
   td,
   th {
-    padding: .25rem .5rem;
+    padding: 0.25rem 0.5rem;
     border: 1px solid ${colors.ui.light};
   }
 
@@ -83,9 +83,14 @@ export default `
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-top: 1.414rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     color: ${colors.black};
     font-weight: 600;
     line-height: ${dimensions.lineHeight.heading};
@@ -105,7 +110,9 @@ export default `
     font-size: ${dimensions.headingSizes.h3}rem;
   }
 
-  h4, h5, h6 {
+  h4,
+  h5,
+  h6 {
     font-size: ${dimensions.headingSizes.h4}rem;
   }
 
@@ -130,7 +137,7 @@ export default `
   }
 
   dd {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   hr {
@@ -141,9 +148,9 @@ export default `
   }
 
   blockquote {
-    margin: .8rem 0;
-    padding: .5rem 1rem;
-    border-left: .25rem solid ${colors.ui.light};
+    margin: 0.8rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 0.25rem solid ${colors.ui.light};
     color: ${colors.gray.calm};
 
     p {

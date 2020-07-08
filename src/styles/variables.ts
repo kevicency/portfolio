@@ -1,24 +1,36 @@
 /* eslint-disable max-len */
+const baseColors = {
+  text: 'white',
+
+  purple: '#541388',
+  purpleDark: '#2E2157',
+  purpleDarker: '#0d0221',
+
+  magenta: '#f6019d',
+  teal: '#01ffc3',
+  azure: '#2de2e6',
+  yellow: '#F9C80E',
+
+  white: '#fff',
+  black: '#000'
+}
 
 export const colors = {
-  brand: '#663399',
-  lilac: '#9d7cbf',
-  accent: '#ffb238',
-  success: '#37b635',
-  warning: '#ec1818',
+  ...baseColors,
+
+  bg: baseColors.purpleDarker,
+  bgAlt: baseColors.purpleDark,
+
   ui: {
     bright: '#e0d6eb',
     light: '#f5f3f7',
     whisper: '#fbfafc'
   },
-  code: '#fcf6f0',
   gray: {
     dark: 'hsla(270, 17.119554496%, 0%, 0.92)',
     copy: 'hsla(270, 15.797828016000002%, 0%, 0.88)',
     calm: 'rgba(0, 0, 0, 0.54)'
-  },
-  white: '#fff',
-  black: '#000'
+  }
 }
 
 export const fonts = {

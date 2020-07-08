@@ -1,13 +1,10 @@
+import { graphql, StaticQuery } from 'gatsby'
+import 'modern-normalize'
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-
-import 'modern-normalize'
-import '../styles/normalize'
-
-import Header from '../components/Header'
-import LayoutRoot from '../components/LayoutRoot'
 import LayoutMain from '../components/LayoutMain'
+import LayoutRoot from '../components/LayoutRoot'
+import '../styles/normalize'
 
 interface StaticQueryProps {
   site: {
@@ -40,7 +37,6 @@ const IndexLayout: React.FC = ({ children }) => (
             { name: 'keywords', content: data.site.siteMetadata.keywords }
           ]}
         />
-        <Header title={data.site.siteMetadata.title} />
         <LayoutMain>{children}</LayoutMain>
       </LayoutRoot>
     )}
