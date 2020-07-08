@@ -5,7 +5,8 @@ import { rgba } from 'polished'
 import React from 'react'
 import { useHeaderTransition } from '../hooks'
 import { colors } from '../styles/variables'
-import { easeInOutQuad } from '../tween'
+import { easeInOutQuad, easeOutQuad } from '../tween'
+import claimJob from './assets/claim_job.svg'
 import claimName from './assets/claim_name.svg'
 import logo from './assets/logo.svg'
 import logoShadow from './assets/logo_shadow.svg'
@@ -61,7 +62,7 @@ const Gridlines = styled.div`
   border-top: 5px solid ${teal};
   box-shadow: 0 -25px 75px ${rgba(teal, 0.66)};
   height: 100vh;
-  transform: scale(1.4) rotateX(70deg);
+  transform: scale(1.5) rotateX(70deg);
   position: absolute;
   top: -70%;
   width: 100%;
@@ -76,7 +77,7 @@ const Gridlines = styled.div`
 `
 
 const Header: React.FC = () => {
-  const { t, cw, ch } = useHeaderTransition(0.01, 0.45)
+  const { t, cw, ch } = useHeaderTransition(0.01, 0.4)
 
   return (
     <span>
@@ -105,7 +106,7 @@ const Header: React.FC = () => {
           alt="logo"
           css={css`
             position: absolute;
-            top: ${easeInOutQuad(t, ch * 0.44, 6, 1)}px;
+            top: ${easeInOutQuad(t, ch * 0.4, 6, 1)}px;
             left: ${easeInOutQuad(t, cw * 0.34, cw * 0.25, 1)}px;
             height: ${easeInOutQuad(t, cw * 0.32 * logoRatio, logoHeight, 1)}px;
           `}
@@ -125,9 +126,21 @@ const Header: React.FC = () => {
           src={claimName}
           alt="Kevin Mees"
           css={css`
-            top: ${easeInOutQuad(t, ch * 0.49, 6, 1)}px;
+            position: absolute;
+            top: ${easeInOutQuad(t, ch * 0.45, 6, 1)}px;
             left: ${easeInOutQuad(t, cw * 0.26, cw * 0.25 + logoWidth, 1)}px;
             height: ${easeInOutQuad(t, cw * 0.48 * nameRatio, nameHeight, 1)}px;
+          `}
+        />
+        <img
+          src={claimJob}
+          alt="Developer"
+          css={css`
+            position: absolute;
+            top: ${easeInOutQuad(t, ch * 0.59, ch, 1)}px;
+            left: ${(cw * (1 - 0.48 * 0.35)) / 2}px;
+            height: ${cw * 0.48 * 0.75 * nameRatio}px;
+            opacity: ${t <= 0.45 ? easeOutQuad(t, 1, 0, 0.45) : 0};
           `}
         />
       </div>
