@@ -1,7 +1,14 @@
 import { useScrollPosition } from './useScrollPosition'
 import { useWindowSize } from './useWindowSize'
 
-export function useHeaderTransition(start: number, end: number) {
+export interface TransitionProps {
+  cw: number
+  ch: number
+  scrollX: number
+  scrollY: number
+  t: number
+}
+export function useHeaderTransition(start: number, end: number): TransitionProps {
   const { width, height } = useWindowSize()
   const { x, y } = useScrollPosition()
 

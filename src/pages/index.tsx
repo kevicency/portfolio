@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
-import { HeaderSection } from '../content/HeaderSection'
+import { Header } from '../components/Header'
+import { HeroSection } from '../content/HeroSection'
 import { Html } from '../layouts'
 import { colors } from '../styles/variables'
 
@@ -13,7 +14,8 @@ const Placeholder = styled.div<{ color: string }>`
 
 const IndexPage = () => (
   <Html>
-    <HeaderSection />
+    <Header />
+    <HeroSection />
     <Placeholder color={colors.magenta} />
     <Placeholder color={colors.teal} />
     <Placeholder color={colors.azure} />
