@@ -51,7 +51,7 @@ export const breakpoints = {
 export const widths = {
   md: 720,
   lg: 960,
-  xl: 1140
+  xl: 1280
 }
 
 export const dimensions = {

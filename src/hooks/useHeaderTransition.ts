@@ -8,7 +8,8 @@ export interface TransitionProps {
   scrollY: number
   t: number
 }
-export function useHeaderTransition(start: number, end: number): TransitionProps {
+
+export function useHeaderTransition(start: number, end: number, maxWidth = Infinity): TransitionProps {
   const { width, height } = useWindowSize()
   const { x, y } = useScrollPosition()
 
@@ -17,7 +18,7 @@ export function useHeaderTransition(start: number, end: number): TransitionProps
   const t = Math.min(1, Math.max(0, (scrollY - start) / (end - start)))
 
   return {
-    cw: width,
+    cw: Math.min(width, maxWidth),
     ch: height,
     scrollX,
     scrollY,
