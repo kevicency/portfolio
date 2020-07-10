@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react'
 interface ScrollPosition {
   x: number
   y: number
+  restored: boolean
 }
 
 const isBrowser = typeof window !== `undefined`
 
-function getScrollPosition(): ScrollPosition {
-  return isBrowser ? { x: window.pageXOffset, y: window.pageYOffset } : { x: 0, y: 0 }
+function getScrollPosition(restored = true): ScrollPosition {
+  return isBrowser ? { x: window.pageXOffset, y: window.pageYOffset, restored } : { x: 0, y: 0, restored }
 }
 
 export function useScrollPosition(): ScrollPosition {
-  const [position, setScrollPosition] = useState<ScrollPosition>(getScrollPosition())
+  const [position, setScrollPosition] = useState<ScrollPosition>(getScrollPosition(false))
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {

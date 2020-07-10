@@ -8,7 +8,7 @@ export const neonText = (color: string, scale = 1) => {
 
   return keyframes`
     from {
-    text-shadow: ${from}
+      text-shadow: ${from}
     }
     to {
       text-shadow: ${to}

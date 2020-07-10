@@ -7,7 +7,7 @@
 import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { modularScale } from 'polished'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SectionLink, SectionLinks } from 'react-scroll-section'
 import claimJob from '../content/assets/claim_job.svg'
 import claimName from '../content/assets/claim_name.svg'
@@ -33,13 +33,20 @@ const nameWidth = innerHeight / nameRatio
 const logoWidth = innerHeight / logoRatio
 
 export const LogoWithClaim: React.FC<TransitionProps> = props => {
-  const { t, cw, ch } = props
+  // TODO: make this less hacky?!
+  const [showIntroAnimation, setShowIntroAnimation] = useState(true)
+  useEffect(() => {
+    setTimeout(() => setShowIntroAnimation(false), 1200)
+  }, [setShowIntroAnimation])
+
+  const { t, scrollRestored, cw, ch } = props
   const cwRatio = 0.5
   const aw = easeInOutQuad(t, cw * cwRatio, innerHeight, 1)
   const ah = aw * easeInOutQuad(t, 2 / 3, 1, 1)
 
   return (
     <div
+      className={`${showIntroAnimation && scrollRestored && t === 0 ? 'animate__animated animate__bounceInDown' : ''}`}
       css={css`
         /* border: 1px solid red; */
         position: absolute;
@@ -83,7 +90,7 @@ export const Logo: React.FC<TransitionProps & AnchorProps> = ({ t, aw, children 
     </div>
   )
 }
-export const LogoShadow: React.FC<TransitionProps & AnchorProps> = ({ t, cw, ch, aw, ah }) => {
+export const LogoShadow: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => {
   const wRatio = 1
   const w = easeInOutQuad(t, aw * wRatio, nameWidth, 1)
 
@@ -95,10 +102,10 @@ export const LogoShadow: React.FC<TransitionProps & AnchorProps> = ({ t, cw, ch,
         background-size: contain;
         background-position: top center;
         position: absolute;
-        bottom: -90%;
+        bottom: -25%;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 30%;
         /* bottom: ${easeInOutQuad(t, -25, 0, 1)}%;
         left: ${easeInOutQuad(t, 0, logoWidth * 0.75, 1)}px;
         height: ${w * nameRatio}px;

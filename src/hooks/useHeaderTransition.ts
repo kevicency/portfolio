@@ -6,12 +6,13 @@ export interface TransitionProps {
   ch: number
   scrollX: number
   scrollY: number
+  scrollRestored: boolean
   t: number
 }
 
 export function useHeaderTransition(start: number, end: number, maxWidth = Infinity): TransitionProps {
   const { width, height } = useWindowSize()
-  const { x, y } = useScrollPosition()
+  const { x, y, restored } = useScrollPosition()
 
   const [scrollX, scrollY] = [x / (width || 1), y / (width || 1)]
 
@@ -22,6 +23,7 @@ export function useHeaderTransition(start: number, end: number, maxWidth = Infin
     ch: height,
     scrollX,
     scrollY,
+    scrollRestored: restored,
     t
   }
 }
