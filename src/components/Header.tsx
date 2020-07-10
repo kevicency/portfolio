@@ -1,9 +1,14 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-props-no-spreading */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { modularScale } from 'polished'
 import React from 'react'
+import { SectionLink, SectionLinks } from 'react-scroll-section'
 import claimJob from '../content/assets/claim_job.svg'
 import claimName from '../content/assets/claim_name.svg'
 import logo from '../content/assets/logo.svg'
@@ -12,6 +17,7 @@ import { TransitionProps, useHeaderTransition } from '../hooks'
 import { neonLink } from '../styles/mixins'
 import { colors, heights, widths } from '../styles/variables'
 import { easeInOutQuad } from '../tween'
+import { capitalize } from '../util'
 
 const { bg } = colors
 const padding = 8
@@ -125,16 +131,20 @@ export const ClaimName: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) =>
         width: ${w}px;
       `}
     >
-      <a
-        href="/"
-        css={css`
-          flex: 1;
-          text-indent: -9999px;
-          display: ${t !== 1 ? 'none' : 'block'};
-        `}
-      >
-        Kevin Mees
-      </a>
+      <SectionLink section="home">
+        {({ onClick }: any) => (
+          <a
+            onClick={onClick}
+            css={css`
+              flex: 1;
+              text-indent: -9999px;
+              cursor: ${t !== 1 ? 'initial' : 'pointer'};
+            `}
+          >
+            Kevin Mees
+          </a>
+        )}
+      </SectionLink>
       {/* <h1
         css={css`
           font-family: 'Road Rage';
@@ -171,7 +181,7 @@ export const ClaimJob: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => 
   )
 }
 
-export const NavLink = styled.a`
+export const NavLink = styled.a<{ selected: boolean }>`
   position: relative;
   text-decoration: none;
   font-family: Streamster;
@@ -179,9 +189,19 @@ export const NavLink = styled.a`
   padding: 0 ${navPadding[1]}px;
 
   ${neonLink(colors.teal, 0.5, 0)};
+  ${props => (props.selected ? `color: ${colors.white};` : '')};
+
+  &:hover {
+    text-decoration: none;
+  }
 `
 
-export const Sitenav: React.FC = () => {
+export interface SidebarProps {
+  navigateDelay?: number
+  onNavigate?: (sectionId: string) => void
+}
+
+export const Sitenav: React.FC<SidebarProps> = props => {
   return (
     <nav
       css={css`
@@ -208,15 +228,28 @@ export const Sitenav: React.FC = () => {
           }
         `}
       >
-        <li>
-          <NavLink href="#skills">Skills</NavLink>
-        </li>
-        <li>
-          <NavLink href="#projects">Projects</NavLink>
-        </li>
-        <li>
-          <NavLink href="#experience">Experience</NavLink>
-        </li>
+        <SectionLinks>
+          {({ allLinks }: any) =>
+            Object.entries(allLinks)
+              .filter(([key]: any) => key !== 'home')
+              .map(([key, value]: any[]) => (
+                <li key={key}>
+                  <NavLink
+                    onClick={() => {
+                      setTimeout(value.onClick(), props.navigateDelay || 0)
+
+                      if (props.onNavigate) {
+                        props.onNavigate(key)
+                      }
+                    }}
+                    selected={value.isSelected}
+                  >
+                    {capitalize(key)}
+                  </NavLink>
+                </li>
+              ))
+          }
+        </SectionLinks>
       </ul>
     </nav>
   )
@@ -230,9 +263,7 @@ export const NavContainer = styled.div`
 `
 
 export const Header: React.FC = () => {
-  const transition = useHeaderTransition(0.01, 0.4, widths.xl)
-
-  console.log(transition)
+  const transition = useHeaderTransition(0.01, 0.55, widths.xl)
 
   return (
     <div

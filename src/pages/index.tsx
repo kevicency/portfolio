@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
+import { Section } from 'react-scroll-section'
 import { Header } from '../components/Header'
 import { HeroSection } from '../content/HeroSection'
 import { Html } from '../layouts'
@@ -15,10 +16,18 @@ const Placeholder = styled.div<{ color: string }>`
 const IndexPage = () => (
   <Html>
     <Header />
-    <HeroSection />
-    <Placeholder color={colors.magenta} />
-    <Placeholder color={colors.teal} />
-    <Placeholder color={colors.azure} />
+    <Section id="home">
+      <HeroSection />
+    </Section>
+    <Section id="skills">
+      <Placeholder color={colors.purple} />
+    </Section>
+    <Section id="projects">
+      <Placeholder color={colors.yellow} />
+    </Section>
+    <Section id="experience">
+      <Placeholder color={colors.azure} />
+    </Section>
   </Html>
 )
 
