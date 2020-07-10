@@ -15,7 +15,7 @@ import logo from '../content/assets/logo.svg'
 import logoShadow from '../content/assets/logo_shadow.svg'
 import { TransitionProps, useHeaderTransition } from '../hooks'
 import { neonLink } from '../styles/mixins'
-import { colors, heights, widths } from '../styles/variables'
+import { breakpoints, colors, heights, widths } from '../styles/variables'
 import { easeInOutQuad } from '../tween'
 import { capitalize } from '../util'
 
@@ -196,12 +196,28 @@ export const ClaimJob: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => 
   )
 }
 
+export const NavLinks = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 2em 0;
+  list-style: none;
+
+  & > li {
+    flex: 2;
+    margin: 0;
+  }
+`
 export const NavLink = styled.a<{ selected: boolean }>`
+  display: inline-block;
   position: relative;
   text-decoration: none;
   font-family: Streamster;
   font-size: ${modularScale(1.5)};
-  padding: 0 ${navPadding[1]}px;
+  padding: ${navPadding[0]}px ${navPadding[1]}px;
 
   ${neonLink(colors.teal, 0.5, 0)};
   ${props => (props.selected ? `color: ${colors.white};` : '')};
@@ -210,63 +226,137 @@ export const NavLink = styled.a<{ selected: boolean }>`
     text-decoration: none;
   }
 `
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const SocialLink = styled.a`
+  font-size: ${modularScale(2)};
+  padding: 0 0.5em;
 
-export interface SidebarProps {
-  navigateDelay?: number
-  onNavigate?: (sectionId: string) => void
-}
+  ${neonLink(colors.teal, 0.5)};
+`
 
-export const Sitenav: React.FC<SidebarProps> = props => {
+const Toggle = styled.button`
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  font-size: ${modularScale(3)};
+  padding: 4px 8px;
+  margin-right: 4px;
+  color: ${colors.teal};
+`
+const Dismiss = styled.div`
+  background: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
+`
+
+const SidebarContainer = styled.div<{ open: boolean }>`
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 80%;
+  background: ${colors.bg};
+  transform: translateX(${props => (props.open ? 0 : 100)}%);
+  transition: transform 0.5s ease;
+
+  z-index: 1000;
+`
+
+const Nav = styled.nav`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  right: 0%;
+  margin-right: 8px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media screen and (min-width: ${breakpoints.md}px) {
+    ${Toggle} {
+      display: none;
+    }
+    ${Dismiss} {
+      display: none;
+    }
+
+    ${SidebarContainer} {
+      background: transparent;
+      position: relative;
+      width: auto;
+      height: auto;
+      transform: translateX(0%) !important;
+    }
+
+    ${NavLinks} {
+      flex-direction: row;
+      padding: 0;
+    }
+  }
+`
+
+// export interface SidebarProps {}
+
+export const Sitenav: React.FC<{}> = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const openSidebar = React.useCallback(() => setSidebarOpen(true), [setSidebarOpen])
+  const closeSidebar = React.useCallback(() => setSidebarOpen(false), [setSidebarOpen])
+
   return (
-    <nav
-      css={css`
-        position: absolute;
-        top: 0;
-        height: 100%;
-        right: 0%;
-        margin-right: 8px;
+    <Nav>
+      <Toggle onClick={openSidebar}>
+        <span className="fas fa-bars" />
+      </Toggle>
+      {sidebarOpen && <Dismiss onClick={closeSidebar} />}
 
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-      `}
-    >
-      <ul
-        css={css`
-          display: flex;
-          margin: 0;
-          padding: 8px 0;
-          list-style: none;
+      <SidebarContainer open={sidebarOpen}>
+        <NavLinks>
+          <SectionLinks>
+            {({ allLinks }: any) =>
+              Object.entries(allLinks)
+                .filter(([key]: any) => key !== 'home')
+                .map(([key, value]: any[]) => (
+                  <li key={key}>
+                    <NavLink
+                      onClick={() => {
+                        setTimeout(value.onClick(), 250)
 
-          & > li {
-            margin: 0;
-          }
-        `}
-      >
-        <SectionLinks>
-          {({ allLinks }: any) =>
-            Object.entries(allLinks)
-              .filter(([key]: any) => key !== 'home')
-              .map(([key, value]: any[]) => (
-                <li key={key}>
-                  <NavLink
-                    onClick={() => {
-                      setTimeout(value.onClick(), props.navigateDelay || 0)
-
-                      if (props.onNavigate) {
-                        props.onNavigate(key)
-                      }
-                    }}
-                    selected={value.isSelected}
-                  >
-                    {capitalize(key)}
-                  </NavLink>
-                </li>
-              ))
-          }
-        </SectionLinks>
-      </ul>
-    </nav>
+                        closeSidebar()
+                      }}
+                      selected={value.isSelected}
+                    >
+                      {capitalize(key)}
+                    </NavLink>
+                  </li>
+                ))
+            }
+          </SectionLinks>
+          <SocialLinks>
+            <SocialLink href="https://github.com/kmees" target="_blank">
+              <span className="fab fa-github" />
+            </SocialLink>
+            <SocialLink href="https://twitter.com/MeekVeins" target="_blank">
+              <span className="fab fa-twitter" />
+            </SocialLink>
+            <SocialLink href="https://www.linkedin.com/in/kevin-mees-a643b779" target="_blank">
+              <span className="fab fa-linkedin" />
+            </SocialLink>
+            <SocialLink href="https://www.instagram.com/meekveins" target="_blank">
+              <span className="fab fa-instagram" />
+            </SocialLink>
+          </SocialLinks>
+        </NavLinks>
+      </SidebarContainer>
+    </Nav>
   )
 }
 
