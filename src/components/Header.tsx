@@ -44,19 +44,17 @@ export const LogoWithClaim: React.FC<TransitionProps> = props => {
   const aw = easeInOutQuad(t, cw * cwRatio, innerHeight, 1)
   const ah = aw * easeInOutQuad(t, 2 / 3, 1, 1)
 
-  console.log({ cw, ch, ah, aw, scrollRestored })
-
   return (
     <div
       className={`${showIntroAnimation && scrollRestored && t === 0 ? 'animate__animated animate__bounceInDown' : ''}`}
-      css={css`
+      style={{
         /* border: 1px solid red; */
-        position: absolute;
-        top: ${easeInOutQuad(t, ch * 0.4, navPadding[0], 1)}px;
-        left: ${easeInOutQuad(t, (cw * (1 - cwRatio)) / 2, navPadding[1], 1)}px;
-        height: ${ah}px;
-        width: ${aw}px;
-      `}
+        position: 'absolute',
+        top: `${easeInOutQuad(t, ch * 0.4, navPadding[0], 1)}px`,
+        left: `${easeInOutQuad(t, (cw * (1 - cwRatio)) / 2, navPadding[1], 1)}px`,
+        height: `${ah}px`,
+        width: `${aw}px`
+      }}
     >
       <Logo {...props} aw={aw} ah={ah}>
         <LogoShadow {...props} aw={aw} ah={ah} />
@@ -82,11 +80,13 @@ export const Logo: React.FC<TransitionProps & AnchorProps> = ({ t, aw, children 
       background-repeat: no-repeat;
       background-size: contain;
       position: absolute;
-      top: ${easeInOutQuad(t, 6, 0, 1)}%;
-      left: ${easeInOutQuad(t, (aw * wRatio) / 4, 0, 1)}px;
-      height: ${w * logoRatio}px;
-      width: ${w}px;
-    `}
+      `}
+      style={{
+        top: `${easeInOutQuad(t, 6, 0, 1)}%`,
+        left: `${easeInOutQuad(t, (aw * wRatio) / 4, 0, 1)}px`,
+        height: `${w * logoRatio}px`,
+        width: `${w}px`
+      }}
     >
       {children}
     </div>
@@ -112,8 +112,10 @@ export const LogoShadow: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) =
         left: ${easeInOutQuad(t, 0, logoWidth * 0.75, 1)}px;
         height: ${w * nameRatio}px;
         width: ${w}px; */
-        opacity: ${t >= 0.8 ? Math.max(0, (0.9 - t) * 10) : 1};
       `}
+      style={{
+        opacity: `${t >= 0.8 ? Math.max(0, (0.9 - t) * 10) : 1}`
+      }}
     />
   )
 }
@@ -134,11 +136,13 @@ export const ClaimName: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) =>
         background-repeat: no-repeat;
         background-size: contain;
         position: absolute;
-        top: ${easeInOutQuad(t, 15, 0, 1)}%;
-        left: ${easeInOutQuad(t, 0, logoWidth * 0.9, 1)}px;
-        height: ${w * nameRatio}px;
-        width: ${w}px;
       `}
+      style={{
+        top: `${easeInOutQuad(t, 15, 0, 1)}%`,
+        left: `${easeInOutQuad(t, 0, logoWidth * 0.9, 1)}px`,
+        height: `${w * nameRatio}px`,
+        width: `${w}px`
+      }}
     >
       <SectionLink section="home">
         {({ onClick }: any) => (
@@ -180,12 +184,14 @@ export const ClaimJob: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => 
         background-repeat: no-repeat;
         background-size: contain;
         position: absolute;
-        top: ${easeInOutQuad(t, 44, 0, 1)}%;
-        left: ${easeInOutQuad(t, 0.5 + ((1 - wRatio) * 100) / 2, 500, 1)}%;
-        height: ${w * jobRatio}px;
-        width: ${w}px;
-        opacity: ${t <= 0.5 ? 1 - t * 2 : 0};
-      `}
+        `}
+      style={{
+        top: `${easeInOutQuad(t, 44, 0, 1)}%`,
+        left: `${easeInOutQuad(t, 0.5 + ((1 - wRatio) * 100) / 2, 500, 1)}%`,
+        height: `${w * jobRatio}px`,
+        width: `${w}px`,
+        opacity: `${t <= 0.5 ? 1 - t * 2 : 0}`
+      }}
     />
   )
 }

@@ -31,7 +31,7 @@ const Content = styled.div`
 `
 
 const GridlinesPerspective: React.FC = ({ children }) => {
-  const { width } = useWindowSize()
+  const { width, height } = useWindowSize()
 
   return (
     <div
@@ -39,7 +39,7 @@ const GridlinesPerspective: React.FC = ({ children }) => {
         background-size: cover;
         height: ${100 - skyRatio}vh;
         overflow: hidden;
-        perspective: ${width * 0.625 || 1200}px;
+        perspective: ${Math.max(width * 0.625, height) || 1200}px;
       `}
     >
       {children}
