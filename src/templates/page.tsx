@@ -1,9 +1,8 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
-
-import Page from '../components/Page'
+import * as React from 'react'
 import Container from '../components/Container'
-import IndexLayout from '../layouts'
+import Page from '../components/Page'
+import { Html } from '../layouts'
 
 interface PageTemplateProps {
   data: {
@@ -28,7 +27,7 @@ interface PageTemplateProps {
 }
 
 const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => (
-  <IndexLayout>
+  <Html>
     <Page>
       <Container>
         <h1>{data.markdownRemark.frontmatter.title}</h1>
@@ -36,7 +35,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => (
         <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
       </Container>
     </Page>
-  </IndexLayout>
+  </Html>
 )
 
 export default PageTemplate

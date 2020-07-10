@@ -39,7 +39,7 @@ const GridlinesPerspective: React.FC = ({ children }) => {
         background-size: cover;
         height: ${100 - skyRatio}vh;
         overflow: hidden;
-        perspective: ${width * 0.625};
+        perspective: ${width * 0.625 || 1200}px;
       `}
     >
       {children}

@@ -5,6 +5,7 @@ import { ScrollingProvider } from 'react-scroll-section'
 import { Helmet } from '../components/Helmet'
 import normalize from '../styles/normalize'
 import { colors } from '../styles/variables'
+import { isBrowser } from '../util'
 
 const Layout = styled.div`
   display: flex;
@@ -19,9 +20,7 @@ export const Html: React.FC = ({ children }) => {
     <>
       <Global styles={() => css(normalize)} />
       <Helmet />
-      <Layout>
-        <ScrollingProvider>{children}</ScrollingProvider>
-      </Layout>
+      <Layout>{isBrowser() && <ScrollingProvider>{children}</ScrollingProvider>}</Layout>
     </>
   )
 }

@@ -44,6 +44,8 @@ export const LogoWithClaim: React.FC<TransitionProps> = props => {
   const aw = easeInOutQuad(t, cw * cwRatio, innerHeight, 1)
   const ah = aw * easeInOutQuad(t, 2 / 3, 1, 1)
 
+  console.log({ cw, ch, ah, aw, scrollRestored })
+
   return (
     <div
       className={`${showIntroAnimation && scrollRestored && t === 0 ? 'animate__animated animate__bounceInDown' : ''}`}

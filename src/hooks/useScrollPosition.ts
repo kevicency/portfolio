@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { isBrowser } from '../util'
 
 interface ScrollPosition {
   x: number
@@ -6,10 +7,8 @@ interface ScrollPosition {
   restored: boolean
 }
 
-const isBrowser = typeof window !== `undefined`
-
 function getScrollPosition(restored = true): ScrollPosition {
-  return isBrowser ? { x: window.pageXOffset, y: window.pageYOffset, restored } : { x: 0, y: 0, restored }
+  return isBrowser() ? { x: window.pageXOffset, y: window.pageYOffset, restored } : { x: 0, y: 0, restored }
 }
 
 export function useScrollPosition(): ScrollPosition {
@@ -19,7 +18,7 @@ export function useScrollPosition(): ScrollPosition {
   useEffect(() => {
     let requestRunning: number | null = null
     function handleScroll() {
-      if (isBrowser && requestRunning === null) {
+      if (isBrowser() && requestRunning === null) {
         requestRunning = window.requestAnimationFrame(() => {
           setScrollPosition(getScrollPosition())
           requestRunning = null
@@ -27,7 +26,7 @@ export function useScrollPosition(): ScrollPosition {
       }
     }
 
-    if (isBrowser) {
+    if (isBrowser()) {
       handleScroll()
 
       window.addEventListener('scroll', handleScroll)
