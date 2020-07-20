@@ -12,7 +12,7 @@ import frontend2 from './assets/skills_frontend2.svg'
 import sunPurple from './assets/sun_city.svg'
 
 const skyRatio = 33
-const { teal, bg, magenta, purple } = colors
+const { teal, bg, purple } = colors
 
 const Container = styled.div`
   flex: 1;
@@ -44,6 +44,15 @@ const Content = styled.div`
 
   background: ${colors.bg};
   background: linear-gradient(180deg, ${colors.bg} 0%, ${colors.bgAlt} 100%);
+
+  &:after {
+    background: linear-gradient(to bottom, ${rgba(bg, 0)} 75%, ${rgba(bg, 1)} 100%);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    bottom: -1%;
+  }
 `
 
 const GridlinesPerspective: React.FC = ({ children }) => {
@@ -108,7 +117,7 @@ export const SkillsSection: React.FC = () => {
               text-align: center;
               font-family: 'Road Rage';
               font-size: ${modularScale(7)};
-              color: ${bg};
+              color: ${colors.black};
             `}
           >
             Skills
@@ -123,7 +132,7 @@ export const SkillsSection: React.FC = () => {
               text-align: center;
               font-family: 'Streamster';
               font-size: ${modularScale(4)};
-              color: ${bg};
+              color: ${colors.black};
             `}
           >
             <span>Frontend</span>
