@@ -71,19 +71,53 @@ const GridlinesPerspective: React.FC = ({ children }) => {
     </div>
   )
 }
+const gridlineColor = colors.purple
 const Gridlines = styled.div`
   background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0px,
-      ${rgba(purple, 0.66)} 0%,
-      ${rgba(purple, 0.66)} 3px,
+      ${rgba(gridlineColor, 0.66)} 0%,
+      ${rgba(gridlineColor, 0.66)} 3px,
       rgba(0, 0, 0, 0) 0px
     ),
-    linear-gradient(90deg, rgba(0, 0, 0, 0) 0px, ${rgba(purple, 0.66)} 0%, ${rgba(
-  purple,
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 0px, ${rgba(gridlineColor, 0.66)} 0%, ${rgba(
+  gridlineColor,
   0.5
 )} 3px, rgba(0, 0, 0, 0) 0px);
   background-size: 2em 2em, 2em 2em;
+  background-color: transparent;
+  /* border-top: 5px solid ${teal}; */
+  box-shadow: 0 70px 25px 15px ${rgba(purple, 1)};
+  height: 100vh;
+  transform: scale(1.0) rotateX(80deg);
+  position: absolute;
+  top: -25%;
+  width: 20%;
+  margin: 0 40%;
+
+  &:after {
+    background: linear-gradient(to top, ${rgba(bg, 0)} 33%, ${rgba(bg, 1)} 100%);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+`
+const gridlineAltColor = colors.yellow
+const GridlinesAlt = styled.div`
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0px,
+      ${rgba(gridlineAltColor, 0.66)} 0%,
+      ${rgba(gridlineAltColor, 0.66)} 4px,
+      rgba(0, 0, 0, 0) 0px
+    ),
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 0px, ${rgba(gridlineAltColor, 0.66)} 0%, ${rgba(
+  gridlineAltColor,
+  0.5
+)} 4px, rgba(0, 0, 0, 0) 0px);
+  background-size: 49%;
+  background-position-x: 0.5%;
   background-color: transparent;
   /* border-top: 5px solid ${teal}; */
   box-shadow: 0 70px 25px 15px ${rgba(purple, 1)};
@@ -117,7 +151,8 @@ export const SkillsSection: React.FC = () => {
               text-align: center;
               font-family: 'Road Rage';
               font-size: ${modularScale(7)};
-              color: ${colors.black};
+              color: ${colors.teal};
+              opacity: 0.8;
             `}
           >
             Skills
@@ -131,7 +166,7 @@ export const SkillsSection: React.FC = () => {
               width: 100%;
               text-align: center;
               font-family: 'Streamster';
-              font-size: ${modularScale(4)};
+              font-size: ${modularScale(3.5)};
               color: ${colors.black};
             `}
           >
@@ -140,7 +175,7 @@ export const SkillsSection: React.FC = () => {
           </div>
         </Sun>
         <GridlinesPerspective>
-          <Gridlines />
+          <GridlinesAlt />
         </GridlinesPerspective>
         <div
           css={css`
