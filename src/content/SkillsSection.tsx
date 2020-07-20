@@ -151,7 +151,7 @@ export const SkillsSection: React.FC = () => {
               text-align: center;
               font-family: 'Road Rage';
               font-size: ${modularScale(7)};
-              color: ${colors.teal};
+              color: ${colors.magenta};
               opacity: 0.8;
             `}
           >
@@ -167,7 +167,7 @@ export const SkillsSection: React.FC = () => {
               text-align: center;
               font-family: 'Streamster';
               font-size: ${modularScale(3.5)};
-              color: ${colors.black};
+              color: ${colors.teal};
             `}
           >
             <span>Frontend</span>
