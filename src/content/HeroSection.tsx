@@ -8,7 +8,7 @@ import { colors } from '../styles/variables'
 import mountainsWithSun from './assets/mountains_with_sun.svg'
 
 const skyRatio = 55
-const { teal } = colors
+const { teal, bg } = colors
 
 const Container = styled.div`
   flex: 1;
@@ -60,13 +60,13 @@ const Gridlines = styled.div`
   border-top: 5px solid ${teal};
   box-shadow: 0 -25px 75px ${rgba(teal, 0.66)};
   height: 100vh;
-  transform: scale(1.5) rotateX(72deg);
+  transform: scale(1.5) rotateX(75deg);
   position: absolute;
   top: -70%;
   width: 100%;
 
   &:after {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 95%);
+    background: linear-gradient(to bottom, ${rgba(bg, 0.5)} 50%, ${rgba(bg, 1)} 97.5%);
     content: '';
     height: 100%;
     position: absolute;
