@@ -10,6 +10,7 @@ const baseColors = {
   teal: '#01ffc3',
   azure: '#2de2e6',
   yellow: '#F9C80E',
+  orange: '#FF6C11',
 
   white: '#fff',
   black: '#000'

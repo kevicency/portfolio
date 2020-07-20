@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { Section } from 'react-scroll-section'
 import { Header } from '../components/Header'
 import { HeroSection } from '../content/HeroSection'
+import { ProjectsSection } from '../content/ProjectsSection'
 import { SkillsSection } from '../content/SkillsSection'
 import { Html } from '../layouts'
 import { colors } from '../styles/variables'
@@ -24,7 +25,7 @@ const IndexPage = () => (
       <SkillsSection />
     </Section>
     <Section id="projects">
-      <Placeholder color={colors.yellow} />
+      <ProjectsSection />
     </Section>
     <Section id="experience">
       <Placeholder color={colors.azure} />
