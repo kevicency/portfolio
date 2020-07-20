@@ -14,7 +14,7 @@ export function useHeaderTransition(start: number, end: number, maxWidth = Infin
   const { width, height } = useWindowSize()
   const { x, y, restored } = useScrollPosition()
 
-  const [scrollX, scrollY] = [x / (width || 1), y / (width || 1)]
+  const [scrollX, scrollY] = [x / (width || 1), y / (height || 1)]
 
   const t = Math.min(1, Math.max(0, (scrollY - start) / (end - start)))
 

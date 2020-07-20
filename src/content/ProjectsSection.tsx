@@ -18,7 +18,7 @@ const Content = styled.div`
 
 const Title = styled.h2`
   color: ${colors.magenta};
-  font-size: ${modularScale(5)};
+  font-size: ${modularScale(6)};
   font-family: 'Road Rage';
   text-align: center;
 

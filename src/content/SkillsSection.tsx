@@ -3,8 +3,9 @@ import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { modularScale, rgba } from 'polished'
 import React from 'react'
-import { useWindowSize } from '../hooks'
+import { useHeaderTransition, useWindowSize } from '../hooks'
 import { colors } from '../styles/variables'
+import { easeOutQuad } from '../tween'
 import backend from './assets/skills_backend.svg'
 import backend2 from './assets/skills_backend2.svg'
 import skillsFrontend from './assets/skills_frontend.svg'
@@ -138,6 +139,10 @@ const GridlinesAlt = styled.div`
 `
 
 export const SkillsSection: React.FC = () => {
+  const { t, scrollY } = useHeaderTransition(0.6, 0.9)
+
+  console.log({ t, scrollY })
+
   return (
     <Container>
       <Sky />
@@ -150,7 +155,7 @@ export const SkillsSection: React.FC = () => {
               width: 100%;
               text-align: center;
               font-family: 'Road Rage';
-              font-size: ${modularScale(7)};
+              font-size: ${modularScale(6)};
               color: ${colors.magenta};
               opacity: 0.8;
             `}
@@ -168,6 +173,7 @@ export const SkillsSection: React.FC = () => {
               font-family: 'Streamster';
               font-size: ${modularScale(3.5)};
               color: ${colors.teal};
+              opacity: ${easeOutQuad(t, 0, 1, 1)};
             `}
           >
             <span>Frontend</span>
@@ -183,6 +189,7 @@ export const SkillsSection: React.FC = () => {
             bottom: 0;
             height: 100%;
             width: 100%;
+            overflow: hidden;
           `}
         >
           <img
@@ -191,7 +198,7 @@ export const SkillsSection: React.FC = () => {
             css={css`
               position: absolute;
               bottom: 5%;
-              left: 3%;
+              left: ${easeOutQuad(t, -33, 3, 1)}%;
               width: 30%;
             `}
           />
@@ -201,7 +208,7 @@ export const SkillsSection: React.FC = () => {
             css={css`
               position: absolute;
               top: 13%;
-              left: 32%;
+              left: ${easeOutQuad(t, -33, 32, 1)}%;
               width: 15%;
             `}
           />
@@ -211,7 +218,7 @@ export const SkillsSection: React.FC = () => {
             css={css`
               position: absolute;
               bottom: 5%;
-              right: 3%;
+              right: ${easeOutQuad(t, -33, 3, 1)}%;
               width: 30%;
             `}
           />
@@ -221,7 +228,7 @@ export const SkillsSection: React.FC = () => {
             css={css`
               position: absolute;
               top: 13%;
-              right: 32%;
+              right: ${easeOutQuad(t, -33, 32, 1)}%;
               width: 15%;
             `}
           />
