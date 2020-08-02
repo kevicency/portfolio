@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { modularScale, rgba } from 'polished'
 import React from 'react'
 import { useHeaderTransition, useWindowSize } from '../hooks'
+import { fontFamily } from '../styles/mixins'
 import { colors } from '../styles/variables'
 import { easeOutQuad } from '../tween'
 import backend from './assets/skills_backend.svg'
@@ -154,7 +155,7 @@ export const SkillsSection: React.FC = () => {
               top: 15%;
               width: 100%;
               text-align: center;
-              font-family: 'Road Rage';
+              ${fontFamily('roadRage')};
               font-size: ${modularScale(6)};
               color: ${colors.magenta};
               opacity: 0.8;
@@ -170,7 +171,7 @@ export const SkillsSection: React.FC = () => {
               top: 45%;
               width: 100%;
               text-align: center;
-              font-family: 'Streamster';
+              ${fontFamily('streamster')};
               font-size: ${modularScale(3.5)};
               color: ${colors.teal};
               opacity: ${easeOutQuad(t, 0, 1, 1)};

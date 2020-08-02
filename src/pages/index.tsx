@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { Section } from 'react-scroll-section'
+import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { HeroSection } from '../content/HeroSection'
 import { ProjectsSection } from '../content/ProjectsSection'
@@ -30,6 +31,7 @@ const IndexPage = () => (
     <Section id="experience">
       <Placeholder color={colors.azure} />
     </Section>
+    <Footer />
   </Html>
 )
 

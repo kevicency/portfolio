@@ -21,7 +21,7 @@ export default `
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: ${fonts.sansSerif};
+    font-family: ${fonts.body};
     color: ${colors.white};
     background-color: ${colors.bg};
     -webkit-text-size-adjust: 100%;

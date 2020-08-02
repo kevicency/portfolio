@@ -1,6 +1,6 @@
 import { css } from '@emotion/core'
 import { neonText, neonText2 } from './animations'
-import { colors, dimensions } from './variables'
+import { colors, dimensions, fonts } from './variables'
 
 export const getEmSize = (size: number) => size / dimensions.fontSize.regular
 
@@ -35,5 +35,11 @@ export const neonLink2 = (color: string, scale?: number, delay = 0.15) => css`
 export const neonTextShadow = (color: string) => {
   return css`
     text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px ${color}, 0 0 16px ${color}, 0 0 32px ${color};
+  `
+}
+
+export const fontFamily = (name: keyof typeof fonts) => {
+  return css`
+    font-family: ${fonts[name]};
   `
 }

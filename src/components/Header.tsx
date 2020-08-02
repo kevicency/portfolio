@@ -14,7 +14,7 @@ import claimName from '../content/assets/claim_name.svg'
 import logo from '../content/assets/logo.svg'
 import logoShadow from '../content/assets/logo_shadow.svg'
 import { TransitionProps, useHeaderTransition } from '../hooks'
-import { neonLink } from '../styles/mixins'
+import { fontFamily, neonLink } from '../styles/mixins'
 import { breakpoints, colors, heights, widths } from '../styles/variables'
 import { easeInOutQuad } from '../tween'
 import { capitalize } from '../util'
@@ -158,18 +158,6 @@ export const ClaimName: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) =>
           </a>
         )}
       </SectionLink>
-      {/* <h1
-        css={css`
-          font-family: 'Road Rage';
-          font-size: 25px;
-          margin: 0;
-          display: ${t !== 1 ? 'none' : 'block'};
-
-          ${neonLink(colors.magenta, 1.25)}
-        `}
-      >
-        Kevin Mees
-      </h1> */}
     </h1>
   )
 }
@@ -215,7 +203,7 @@ export const NavLink = styled.a<{ selected: boolean }>`
   display: inline-block;
   position: relative;
   text-decoration: none;
-  font-family: Streamster;
+  ${fontFamily('streamster')};
   font-size: ${modularScale(1.5)};
   padding: ${navPadding[0]}px ${navPadding[1]}px;
 
@@ -225,16 +213,6 @@ export const NavLink = styled.a<{ selected: boolean }>`
   &:hover {
     text-decoration: none;
   }
-`
-const SocialLinks = styled.div`
-  display: flex;
-  justify-content: center;
-`
-const SocialLink = styled.a`
-  font-size: ${modularScale(2)};
-  padding: 0 0.5em;
-
-  ${neonLink(colors.teal, 0.5)};
 `
 
 const Toggle = styled.button`
@@ -340,20 +318,6 @@ export const Sitenav: React.FC<{}> = () => {
                 ))
             }
           </SectionLinks>
-          <SocialLinks>
-            <SocialLink href="https://github.com/kmees" target="_blank">
-              <span className="fab fa-github" />
-            </SocialLink>
-            <SocialLink href="https://twitter.com/MeekVeins" target="_blank">
-              <span className="fab fa-twitter" />
-            </SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/kevin-mees-a643b779" target="_blank">
-              <span className="fab fa-linkedin" />
-            </SocialLink>
-            <SocialLink href="https://www.instagram.com/meekveins" target="_blank">
-              <span className="fab fa-instagram" />
-            </SocialLink>
-          </SocialLinks>
         </NavLinks>
       </SidebarContainer>
     </Nav>

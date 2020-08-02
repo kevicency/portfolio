@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { modularScale } from 'polished'
 import React from 'react'
 import { Project } from '../components/Project'
+import { fontFamily } from '../styles/mixins'
 import { colors, widths } from '../styles/variables'
 
 const Container = styled.div`
@@ -19,7 +20,7 @@ const Content = styled.div`
 const Title = styled.h2`
   color: ${colors.magenta};
   font-size: ${modularScale(6)};
-  font-family: 'Road Rage';
+  ${fontFamily('roadRage')};
   text-align: center;
 
   margin-bottom: ${modularScale(0.66)};
