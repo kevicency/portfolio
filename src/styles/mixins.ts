@@ -43,3 +43,13 @@ export const fontFamily = (name: keyof typeof fonts) => {
     font-family: ${fonts[name]};
   `
 }
+
+export const neonBoxShadow = (color: string, scale = 1) => {
+  const size = 5 * scale
+  const sizes = [1, 2, 4, 6, 8].map(x => x * size)
+  const from = sizes.map((s, i) => `0 0 ${s}px ${i < 3 ? '#fff' : color}`).join(', ')
+
+  return css`
+    box-shadow: ${from};
+  `
+}

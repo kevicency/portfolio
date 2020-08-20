@@ -31,3 +31,19 @@ export const neonText2 = (color: string, scale = 1) => {
     }
   `
 }
+
+export const neonBox = (color: string, scale = 1) => {
+  const size = 5 * scale
+  const sizes = [1, 2, 4, 6, 8, 12, 15].map(x => x * size)
+  const from = sizes.map((s, i) => `0 0 ${s}px ${i < 3 ? '#fff' : color}`).join(', ')
+  const to = sizes.map((s, i) => `0 0 ${s * 2}px ${i < 3 ? '#fff' : color}`).join(', ')
+
+  return keyframes`
+    from {
+    box-shadow: ${from}
+    }
+    to {
+      box-shadow: ${to}
+    }
+  `
+}
