@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import styled from '@emotion/styled'
+import { rgba } from 'polished'
 import React from 'react'
 import {
   VerticalTimeline,
@@ -16,6 +17,7 @@ const StyledTimeline = styled(VerticalTimeline)`
     box-shadow: none !important;
     border-radius: 1em;
     background: ${colors.bgAlt};
+    background: linear-gradient(180deg, transparent 0%, ${colors.bgAlt} 3%, ${colors.bg} 97%, transparent 100%);
   }
 
   .vertical-timeline-element-title {
@@ -30,10 +32,15 @@ const StyledTimeline = styled(VerticalTimeline)`
   }
 
   &::before {
-    top:-10px;
+    width: 10px;
+    left: -5px;
+    top: -40px;
     /* ${neonBoxShadow(colors.azure, 0.25)}; */
     /* animation: ${neonBox(colors.azure, 0.25)} 5s ease-in-out infinite alternate !important; */
-    background: linear-gradient(180deg, transparent 0%, ${colors.azure} 3%, ${colors.azure} 97%, transparent 100%);
+    background: linear-gradient(180deg, transparent 0%, ${rgba(colors.yellow, 0.66)} 3%, ${rgba(
+  colors.yellow,
+  0.66
+)} 97%, transparent 100%);
   }
 `
 const StyledTimelineElement = styled(VerticalTimelineElement)`
@@ -45,7 +52,9 @@ const StyledTimelineElement = styled(VerticalTimelineElement)`
       neonBox(props.iconStyle!.background as any, 0.25)} 5s ease-in-out infinite alternate !important; */
   }
   .vertical-timeline-element-content {
-    border-bottom: 3px solid ${props => props.iconStyle!.background};
+    /* border-top: 1px solid white;
+    border-left: 1px solid white; */
+    border-bottom: 5px solid ${props => props.iconStyle!.background};
   }
 
   .vertical-timeline-element-date {
@@ -110,8 +119,8 @@ const Entry: React.FC<Pick<VerticalTimelineElementProps, 'className' | 'date'> &
 }> = ({ className, title, subtitle, type, children, ...props }) => {
   const color = {
     start: colors.teal,
-    education: colors.yellow,
-    work: colors.orange,
+    education: colors.orange,
+    work: colors.teal,
     speaker: colors.magenta
   }[type]
 

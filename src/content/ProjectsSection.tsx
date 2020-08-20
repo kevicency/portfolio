@@ -14,7 +14,7 @@ const Container = styled.div`
 const Content = styled.div`
   max-width: ${widths.xl}px;
   margin: 0 auto;
-  padding: 6em 2em;
+  padding: 0 2em 6em 2em;
 `
 
 const Title = styled.h2`
@@ -23,7 +23,8 @@ const Title = styled.h2`
   ${fontFamily('roadRage')};
   text-align: center;
 
-  margin-bottom: ${modularScale(0.66)};
+  margin: 0;
+  padding: 1.33em 0 1em;
 `
 
 const ProjectList = styled.ul`

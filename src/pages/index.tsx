@@ -18,11 +18,11 @@ const IndexPage = () => (
     <Section id="skills">
       <SkillsSection />
     </Section>
-    <Section id="projects">
-      <ProjectsSection />
-    </Section>
     <Section id="experience">
       <ExperienceSection />
+    </Section>
+    <Section id="projects">
+      <ProjectsSection />
     </Section>
     <Footer />
   </Html>

@@ -9,7 +9,7 @@ export const Container = styled.div`
   flex-flow: column nowrap;
   text-align: center;
 
-  padding: ${modularScale(8)} ${modularScale(1.5)} ${modularScale(4)};
+  padding: ${modularScale(6)} ${modularScale(1.5)} ${modularScale(4)};
 `
 
 const Title = styled.div`
