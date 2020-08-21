@@ -61,16 +61,16 @@ const StyledTimelineElement = styled(VerticalTimelineElement)`
     color: ${colors.white};
   }
 
-  &:nth-child(even) .vertical-timeline-element-content {
+  &:nth-of-type(even) .vertical-timeline-element-content {
     border-left: 3px solid ${props => props.iconStyle!.background};
   }
-  &:nth-child(even) .vertical-timeline-element-content-arrow {
+  &:nth-of-type(even) .vertical-timeline-element-content-arrow {
     border-right: 12px solid ${props => props.iconStyle!.background};
   }
-  &:nth-child(odd) .vertical-timeline-element-content {
+  &:nth-of-type(odd) .vertical-timeline-element-content {
     border-right: 3px solid ${props => props.iconStyle!.background};
   }
-  &:nth-child(odd) .vertical-timeline-element-content-arrow {
+  &:nth-of-type(odd) .vertical-timeline-element-content-arrow {
     border-right: 12px solid ${props => props.iconStyle!.background};
   }
 `

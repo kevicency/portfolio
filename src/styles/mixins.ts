@@ -31,6 +31,18 @@ export const neonLink2 = (color: string, scale?: number, delay = 0.15) => css`
     text-decoration: none;
   }
 `
+export const neonLink2Alt = (color: string, scale?: number, delay = 0.15) => css`
+  color: ${color};
+  transition: color 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: ${colors.white};
+    animation: ${neonText(color, scale)} 1.5s ease-in-out infinite alternate;
+    animation-delay: ${delay}s;
+    text-decoration: none;
+  }
+`
 
 export const neonTextShadow = (color: string) => {
   return css`

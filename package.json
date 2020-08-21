@@ -55,7 +55,8 @@
     "react-helmet": "^5.2.1",
     "react-scroll-section": "2.1.0",
     "react-vertical-timeline-component": "3.0.2",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "use-sound": "1.0.2"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.8",

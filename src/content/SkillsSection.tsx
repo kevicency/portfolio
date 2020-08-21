@@ -140,9 +140,7 @@ const GridlinesAlt = styled.div`
 `
 
 export const SkillsSection: React.FC = () => {
-  const { t, scrollY } = useHeaderTransition(0.6, 0.9)
-
-  console.log({ t, scrollY })
+  const { t } = useHeaderTransition(0.6, 0.9)
 
   return (
     <Container>
