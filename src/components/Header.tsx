@@ -233,7 +233,7 @@ export const MusicToggle = styled.a`
   background: transparent;
   border: 0 !important;
   font-size: ${modularScale(2)};
-  padding: 10px 8px;
+  padding: 12px 8px;
   text-align: center;
   margin-left: 8px;
 

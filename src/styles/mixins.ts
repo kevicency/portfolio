@@ -4,7 +4,7 @@ import { colors, dimensions, fonts } from './variables'
 
 export const getEmSize = (size: number) => size / dimensions.fontSize.regular
 
-export const neonLink = (color: string, scale?: number, delay = 0.15) => css`
+export const neonLink = (color: string, scale?: number, delay = 0) => css`
   color: ${color};
   transition: color 0.25s ease;
   cursor: pointer;
@@ -18,7 +18,7 @@ export const neonLink = (color: string, scale?: number, delay = 0.15) => css`
   }
 `
 
-export const neonLink2 = (color: string, scale?: number, delay = 0.15) => css`
+export const neonLink2 = (color: string, scale?: number, delay = 0) => css`
   color: ${color};
   transition: color 0.25s ease;
   cursor: pointer;
@@ -31,7 +31,7 @@ export const neonLink2 = (color: string, scale?: number, delay = 0.15) => css`
     text-decoration: none;
   }
 `
-export const neonLink2Alt = (color: string, scale?: number, delay = 0.15) => css`
+export const neonLink2Alt = (color: string, scale?: number, delay = 0) => css`
   color: ${color};
   transition: color 0.25s ease;
   cursor: pointer;
