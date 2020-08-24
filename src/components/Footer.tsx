@@ -48,12 +48,6 @@ export const Footer: React.FC = () => {
           <span className="fab fa-instagram" />
         </SocialLink>
       </SocialLinks>
-      <div>
-        Music provided by{' '}
-        <a href="https://icons8.com/music/author/-1456" target="_blank" rel="noreferrer">
-          Powerrun
-        </a>
-      </div>
       <div>&copy; 2020 Kevin Mees</div>
     </Container>
   )

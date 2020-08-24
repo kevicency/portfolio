@@ -9,14 +9,12 @@ import styled from '@emotion/styled'
 import { modularScale } from 'polished'
 import React, { useEffect, useState } from 'react'
 import { SectionLink, SectionLinks } from 'react-scroll-section'
-import useSound from 'use-sound'
 import claimJob from '../content/assets/claim_job.svg'
 import claimName from '../content/assets/claim_name.svg'
 import logo from '../content/assets/logo.svg'
 import logoShadow from '../content/assets/logo_shadow.svg'
-import music from '../content/assets/pulse-of-the-night.mp3'
 import { TransitionProps, useHeaderTransition } from '../hooks'
-import { fontFamily, neonLink, neonLink2Alt } from '../styles/mixins'
+import { fontFamily, neonLink } from '../styles/mixins'
 import { breakpoints, colors, heights, widths } from '../styles/variables'
 import { easeInOutQuad } from '../tween'
 import { capitalize } from '../util'
@@ -38,7 +36,7 @@ export const LogoWithClaim: React.FC<TransitionProps> = props => {
   // TODO: make this less hacky?!
   const [showIntroAnimation, setShowIntroAnimation] = useState(true)
   useEffect(() => {
-    setTimeout(() => setShowIntroAnimation(false), 1200)
+    setTimeout(() => setShowIntroAnimation(false), 1000)
   }, [setShowIntroAnimation])
 
   const { t, scrollRestored, cw, ch } = props
@@ -226,19 +224,6 @@ const Toggle = styled.button`
   margin-right: 4px;
   color: ${colors.teal};
 `
-export const MusicToggle = styled.a`
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  background: transparent;
-  border: 0 !important;
-  font-size: ${modularScale(2)};
-  padding: 12px 8px;
-  text-align: center;
-  margin-left: 8px;
-
-  ${neonLink2Alt(colors.teal, 0.5)};
-`
 const Dismiss = styled.div`
   background: transparent;
   position: fixed;
@@ -297,8 +282,6 @@ const Nav = styled.nav`
   }
 `
 
-// export interface SidebarProps {}
-
 export const Sitenav: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -345,32 +328,10 @@ export const NavContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   height: ${height}px;
-
-  @media screen and (min-width: ${breakpoints.md}px) {
-    ${MusicToggle} {
-      left: auto;
-      right: 0;
-    }
-  }
 `
 
 export const Header: React.FC = () => {
-  const [playMusic, { stop: stopMusic, ...musicArgs }] = useSound(music, {
-    volume: 0.33,
-    loop: true,
-    preload: true
-  } as any)
-  const [isPlaying, setIsPlaying] = useState(musicArgs.isPlaying)
   const transition = useHeaderTransition(0.01, 0.55, widths.xl)
-  const toggleMusic = React.useCallback(() => {
-    if (isPlaying) {
-      stopMusic()
-      setIsPlaying(false)
-    } else {
-      playMusic()
-      setIsPlaying(true)
-    }
-  }, [playMusic, stopMusic, isPlaying, setIsPlaying])
 
   return (
     <div
@@ -396,9 +357,6 @@ export const Header: React.FC = () => {
       <NavContainer>
         <LogoWithClaim {...transition} cw={Math.min(1280, transition.cw)} />
         <Sitenav />
-        <MusicToggle onClick={toggleMusic}>
-          <span className={`fas fa-${isPlaying ? 'volume-up' : 'volume-mute'}`} />
-        </MusicToggle>
       </NavContainer>
     </div>
   )
