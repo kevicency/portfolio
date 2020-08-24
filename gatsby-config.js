@@ -30,30 +30,30 @@ module.exports = {
         }
       }
     },
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: {
-              wrapperStyle: 'margin-bottom: 1rem'
-            }
-          },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1140,
-              quality: 90,
-              linkImagesToOriginal: false
-            }
-          }
-        ]
-      }
-    },
+    // {
+    //   resolve: 'gatsby-transformer-remark',
+    //   options: {
+    //     plugins: [
+    //       {
+    //         resolve: 'gatsby-remark-responsive-iframe',
+    //         options: {
+    //           wrapperStyle: 'margin-bottom: 1rem'
+    //         }
+    //       },
+    //       'gatsby-remark-prismjs',
+    //       'gatsby-remark-copy-linked-files',
+    //       'gatsby-remark-smartypants',
+    //       {
+    //         resolve: 'gatsby-remark-images',
+    //         options: {
+    //           maxWidth: 1140,
+    //           quality: 90,
+    //           linkImagesToOriginal: false
+    //         }
+    //       }
+    //     ]
+    //   }
+    // },
     'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-canonical-urls',
