@@ -40,9 +40,10 @@ export const LogoWithClaim: React.FC<TransitionProps> = props => {
   }, [setShowIntroAnimation])
 
   const { t, scrollRestored, cw, ch } = props
-  const cwRatio = 0.5
+  const cwRatio = ch > cw ? 0.8 : 0.5
   const aw = easeInOutQuad(t, cw * cwRatio, innerHeight, 1)
   const ah = aw * easeInOutQuad(t, 2 / 3, 1, 1)
+  const top = ch > cw ? ch * 0.5 : cw * 0.4
 
   return (
     <div
@@ -50,7 +51,7 @@ export const LogoWithClaim: React.FC<TransitionProps> = props => {
       style={{
         /* border: 1px solid red; */
         position: 'absolute',
-        top: `${easeInOutQuad(t, ch * 0.4, navPadding[0], 1)}px`,
+        top: `${easeInOutQuad(t, top, navPadding[0], 1)}px`,
         left: `${easeInOutQuad(t, (cw * (1 - cwRatio)) / 2, navPadding[1], 1)}px`,
         height: `${ah}px`,
         width: `${aw}px`
