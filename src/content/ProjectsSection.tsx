@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { modularScale } from 'polished'
 import React from 'react'
 import { Project } from '../components/Project'
-import { fontFamily } from '../styles/mixins'
+import { SectionTitle } from '../components/SectionTitle'
 import { colors, widths } from '../styles/variables'
 
 const Container = styled.div`
@@ -15,16 +15,6 @@ const Content = styled.div`
   max-width: ${widths.xl}px;
   margin: 0 auto;
   padding: 0 2em 6em 2em;
-`
-
-const Title = styled.h2`
-  color: ${colors.magenta};
-  font-size: ${modularScale(6)};
-  ${fontFamily('roadRage')};
-  text-align: center;
-
-  margin: 0;
-  padding: 1.33em 0 1em;
 `
 
 const ProjectList = styled.ul`
@@ -43,7 +33,7 @@ export const ProjectsSection: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Title>Projects</Title>
+        <SectionTitle>Projects</SectionTitle>
         <ProjectList>
           <ProjectItem
             title="office-ui-formik-react"

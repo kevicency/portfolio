@@ -13,7 +13,7 @@ import claimJob from '../content/assets/claim_job.svg'
 import claimName from '../content/assets/claim_name.svg'
 import logo from '../content/assets/logo.svg'
 import logoShadow from '../content/assets/logo_shadow.svg'
-import { TransitionProps, useHeaderTransition } from '../hooks'
+import { ClientInfo, ScrollTransition, useClientInfo, useScrollTransition } from '../hooks'
 import { fontFamily, neonLink } from '../styles/mixins'
 import { breakpoints, colors, heights, widths } from '../styles/variables'
 import { easeInOutQuad } from '../tween'
@@ -21,8 +21,8 @@ import { capitalize } from '../util'
 
 const { bg } = colors
 const padding = 8
-const height = heights.header
-const innerHeight = height - 2 * padding
+const headerHeight = heights.header
+const innerHeight = headerHeight - 2 * padding
 const navPadding = [padding, 2 * padding]
 
 const nameRatio = 273 / 920
@@ -32,18 +32,20 @@ const jobRatio = 205 / 360
 const nameWidth = innerHeight / nameRatio
 const logoWidth = innerHeight / logoRatio
 
-export const LogoWithClaim: React.FC<TransitionProps> = props => {
+type LogoProps = ScrollTransition & ClientInfo
+
+export const LogoWithClaim: React.FC<LogoProps> = props => {
   // TODO: make this less hacky?!
   const [showIntroAnimation, setShowIntroAnimation] = useState(true)
   useEffect(() => {
     setTimeout(() => setShowIntroAnimation(false), 1000)
   }, [setShowIntroAnimation])
 
-  const { t, scrollRestored, cw, ch } = props
-  const cwRatio = ch > cw ? 0.8 : 0.5
-  const aw = easeInOutQuad(t, cw * cwRatio, innerHeight, 1)
+  const { t, scrollRestored, landscape, cw, ch } = props
+  const widthRatio = landscape ? 0.5 : 0.8
+  const top = landscape ? ch * 0.4 : ch * 0.5
+  const aw = easeInOutQuad(t, cw * widthRatio, innerHeight, 1)
   const ah = aw * easeInOutQuad(t, 2 / 3, 1, 1)
-  const top = ch > cw ? ch * 0.5 : cw * 0.4
 
   return (
     <div
@@ -52,7 +54,7 @@ export const LogoWithClaim: React.FC<TransitionProps> = props => {
         /* border: 1px solid red; */
         position: 'absolute',
         top: `${easeInOutQuad(t, top, navPadding[0], 1)}px`,
-        left: `${easeInOutQuad(t, (cw * (1 - cwRatio)) / 2, navPadding[1], 1)}px`,
+        left: `${easeInOutQuad(t, (cw * (1 - widthRatio)) / 2, navPadding[1], 1)}px`,
         height: `${ah}px`,
         width: `${aw}px`
       }}
@@ -70,7 +72,7 @@ export interface AnchorProps {
   ah: number
 }
 
-export const Logo: React.FC<TransitionProps & AnchorProps> = ({ t, aw, children }) => {
+export const Logo: React.FC<LogoProps & AnchorProps> = ({ t, aw, children }) => {
   const wRatio = 2 / 3
   const w = easeInOutQuad(t, aw * wRatio, logoWidth, 1)
 
@@ -93,7 +95,7 @@ export const Logo: React.FC<TransitionProps & AnchorProps> = ({ t, aw, children 
     </div>
   )
 }
-export const LogoShadow: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => {
+export const LogoShadow: React.FC<LogoProps & AnchorProps> = ({ t, aw }) => {
   const wRatio = 1
   const w = easeInOutQuad(t, aw * wRatio, nameWidth, 1)
 
@@ -120,7 +122,7 @@ export const LogoShadow: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) =
     />
   )
 }
-export const ClaimName: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => {
+export const ClaimName: React.FC<LogoProps & AnchorProps> = ({ t, aw }) => {
   const wRatio = 1
   const w = easeInOutQuad(t, aw * wRatio, nameWidth, 1)
 
@@ -162,7 +164,7 @@ export const ClaimName: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) =>
     </h1>
   )
 }
-export const ClaimJob: React.FC<TransitionProps & AnchorProps> = ({ t, aw }) => {
+export const ClaimJob: React.FC<LogoProps & AnchorProps> = ({ t, aw }) => {
   const wRatio = 0.4
   const w = easeInOutQuad(t, aw * wRatio, nameWidth, 1)
 
@@ -328,18 +330,19 @@ export const NavContainer = styled.div`
   position: relative;
   max-width: 1280px;
   margin: 0 auto;
-  height: ${height}px;
+  height: ${headerHeight}px;
 `
 
 export const Header: React.FC = () => {
-  const transition = useHeaderTransition(0.01, 0.55, widths.xl)
+  const clientInfo = useClientInfo(widths.xl)
+  const logoProps = useScrollTransition(0.01, 0.55)
 
   return (
     <div
       css={css`
         position: fixed;
         top: 0;
-        height: ${height}px;
+        height: ${headerHeight}px;
         width: 100%;
         z-index: 999;
       `}
@@ -349,14 +352,14 @@ export const Header: React.FC = () => {
           position: absolute;
           top: 0;
           left: 0;
-          height: ${height}px;
+          height: ${headerHeight}px;
           width: 100%;
           background: ${bg};
-          opacity: ${easeInOutQuad(transition.t, 0, 1, 1)};
+          opacity: ${easeInOutQuad(logoProps.t, 0, 1, 1)};
         `}
       />
       <NavContainer>
-        <LogoWithClaim {...transition} cw={Math.min(1280, transition.cw)} />
+        <LogoWithClaim {...logoProps} {...clientInfo} />
         <Sitenav />
       </NavContainer>
     </div>

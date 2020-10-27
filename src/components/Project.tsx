@@ -6,12 +6,16 @@ import { breakpoints, colors } from '../styles/variables'
 
 const Title = styled.a`
   font-family: Cabin;
-  font-size: ${modularScale(2)};
+  font-size: ${modularScale(1.5)};
   margin-bottom: 0.5em;
   color: ${colors.teal};
-  white-space: nowrap;
 
   ${neonLink2(colors.teal)};
+
+  @media screen and (min-width: ${breakpoints.lg}px) {
+    font-size: ${modularScale(2)};
+    white-space: nowrap;
+  }
 
   .fab,
   .fas {
@@ -26,7 +30,12 @@ const Tags = styled.div`
   margin: 0 -0.25em;
 `
 const Tag = styled.span`
-  font-size: 18px;
+  font-size: ${modularScale(1.25)}em;
+
+  @media screen and (min-width: ${breakpoints.lg}px) {
+    font-size: ${modularScale(1.5)};
+  }
+
   font-family: 'Cabin';
   color: ${colors.azure};
   /* color: ${colors.white};
@@ -46,7 +55,7 @@ const Container = styled.div`
   flex-flow: column;
   align-items: center;
 
-  @media screen and (min-width: ${breakpoints.md}em) {
+  @media screen and (min-width: ${breakpoints.md}px) {
     ${Tags} {
       justify-content: flex-end;
     }

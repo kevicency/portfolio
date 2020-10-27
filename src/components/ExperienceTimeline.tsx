@@ -24,7 +24,7 @@ const StyledTimeline = styled(VerticalTimeline)`
     color: ${colors.azure};
   }
 
-  @media screen and (min-width: ${breakpoints.lg}em) {
+  @media screen and (min-width: ${breakpoints.lg}px) {
     .vertical-timeline-element-date {
       color: ${colors.white};
       opacity: 0.9;

@@ -9,7 +9,7 @@ const Container = styled.div`
   position: relative;
   margin: 0 -1.5em;
 
-  @media screen and (min-width: ${breakpoints.lg}em) {
+  @media screen and (min-width: ${breakpoints.lg}px) {
     margin: 0 -3.5em;
   }
 

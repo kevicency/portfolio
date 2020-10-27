@@ -3,7 +3,7 @@ import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { modularScale, rgba } from 'polished'
 import React from 'react'
-import { useHeaderTransition, useWindowSize } from '../hooks'
+import { useScrollTransition, useWindowSize } from '../hooks'
 import { fontFamily } from '../styles/mixins'
 import { colors } from '../styles/variables'
 import { easeOutQuad } from '../tween'
@@ -140,7 +140,7 @@ const GridlinesAlt = styled.div`
 `
 
 export const SkillsSection: React.FC = () => {
-  const { t } = useHeaderTransition(0.6, 0.9)
+  const { t } = useScrollTransition(0.6, 0.9)
 
   return (
     <Container>
