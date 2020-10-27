@@ -198,7 +198,7 @@ export const NavLinks = styled.ul`
   list-style: none;
 
   & > li {
-    flex: 2;
+    /* flex: 2; */
     margin: 0;
   }
 `
