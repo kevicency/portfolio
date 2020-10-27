@@ -3,40 +3,43 @@ import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { modularScale, rgba } from 'polished'
 import React from 'react'
-import { useScrollTransition, useWindowSize } from '../hooks'
-import { fontFamily } from '../styles/mixins'
-import { colors } from '../styles/variables'
-import { easeOutQuad } from '../tween'
-import backend from './assets/skills_backend.svg'
-import backend2 from './assets/skills_backend2.svg'
-import skillsFrontend from './assets/skills_frontend.svg'
-import frontend2 from './assets/skills_frontend2.svg'
-import sunPurple from './assets/sun_city.svg'
+import { SectionTitle } from '../../components/SectionTitle'
+import { useScrollTransition, useWindowSize } from '../../hooks'
+import { fontFamily } from '../../styles/mixins'
+import { breakpoints, colors } from '../../styles/variables'
+import { easeOutQuad } from '../../tween'
+import backend from '../assets/skills_backend.svg'
+import backend2 from '../assets/skills_backend2.svg'
+import skillsFrontend from '../assets/skills_frontend.svg'
+import frontend2 from '../assets/skills_frontend2.svg'
+import sunPurple from '../assets/sun_city2.svg'
 
-const skyRatio = 33
+const skyRatio = 55
 const { teal, bg, purple } = colors
 
 const Container = styled.div`
+  position: relative;
   flex: 1;
   min-height: 100vh;
   background: ${bg};
 `
 
 const Sky = styled.div`
+  position: relative;
   width: 100%;
   height: ${skyRatio}vh;
 `
 
 const Sun = styled.div`
   position: absolute;
-  left: 18%;
-  top: -45%;
-  width: 64%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
+  top: 10%;
+  left: 5%;
   background: url('${sunPurple}');
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-size: cover;
+  background-size: contain;
 `
 
 const Content = styled.div`
@@ -48,7 +51,13 @@ const Content = styled.div`
   background: linear-gradient(180deg, ${colors.bg} 0%, ${colors.bgAlt} 100%);
 
   &:after {
-    background: linear-gradient(to bottom, ${rgba(bg, 0)} 75%, ${rgba(bg, 1)} 100%);
+    background: linear-gradient(
+      to bottom,
+      ${rgba(bg, 0.9)} 0%,
+      ${rgba(bg, 0)} 25%,
+      ${rgba(bg, 0)} 75%,
+      ${rgba(bg, 1)} 100%
+    );
     content: '';
     height: 100%;
     position: absolute;
@@ -63,8 +72,11 @@ const GridlinesPerspective: React.FC = ({ children }) => {
   return (
     <div
       css={css`
-        background-size: cover;
+        position: absolute;
+        width: 100%;
         height: ${100 - skyRatio}vh;
+        top: 1%;
+        background-size: cover;
         overflow: hidden;
         perspective: ${0.5 * (Math.max(width * 0.625, height) || 1200)}px;
       `}
@@ -124,9 +136,9 @@ const GridlinesAlt = styled.div`
   /* border-top: 5px solid ${teal}; */
   box-shadow: 0 70px 25px 15px ${rgba(purple, 1)};
   height: 100vh;
-  transform: scale(1.0) rotateX(80deg);
+  transform: scale(1.0) rotateX(59deg);
   position: absolute;
-  top: -25%;
+  top: -100%;
   width: 20%;
   margin: 0 40%;
 
@@ -139,100 +151,106 @@ const GridlinesAlt = styled.div`
   }
 `
 
-export const SkillsSection: React.FC = () => {
+export const DesktopSkillsSection: React.FC = () => {
   const { t } = useScrollTransition(0.6, 0.9)
 
   return (
     <Container>
-      <Sky />
-      <Content>
-        <Sun>
-          <h2
+      <Sky>
+        <Sun />
+        <div
+          css={css`
+            position: absolute;
+            top: 27.5%;
+            width: 100%;
+            text-align: center;
+          `}
+        >
+          <SectionTitle
             css={css`
-              position: absolute;
-              top: 15%;
-              width: 100%;
-              text-align: center;
-              ${fontFamily('roadRage')};
-              font-size: ${modularScale(6)};
-              color: ${colors.magenta};
-              opacity: 0.8;
+              padding: 0 0 0.2em 0;
             `}
           >
             Skills
-          </h2>
+          </SectionTitle>
           <div
             css={css`
-              position: absolute;
               display: flex;
               justify-content: space-around;
-              top: 45%;
-              width: 100%;
-              text-align: center;
+              margin: 0 auto;
               ${fontFamily('streamster')};
               font-size: ${modularScale(3.5)};
               color: ${colors.teal};
               opacity: ${easeOutQuad(t, 0, 1, 1)};
+              @media screen and (min-width: ${breakpoints.lg}px) {
+                font-size: ${modularScale(4)};
+              }
+              @media screen and (min-width: ${breakpoints.xl}px) {
+                font-size: ${modularScale(5)};
+              }
             `}
           >
             <span>Frontend</span>
             <span>Backend</span>
           </div>
-        </Sun>
+        </div>
+      </Sky>
+      <Content>
         <GridlinesPerspective>
           <GridlinesAlt />
         </GridlinesPerspective>
-        <div
+      </Content>
+      <div
+        css={css`
+          position: absolute;
+          bottom: 0;
+          height: 100%;
+          width: 100%;
+          overflow-x: hidden;
+        `}
+      >
+        <img
+          src={skillsFrontend}
+          alt=""
           css={css`
             position: absolute;
-            bottom: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
+            bottom: 3%;
+            left: ${easeOutQuad(t, -33, 2, 1)}%;
+            width: 30%;
           `}
-        >
-          <img
-            src={skillsFrontend}
-            alt=""
-            css={css`
-              position: absolute;
-              bottom: 5%;
-              left: ${easeOutQuad(t, -33, 3, 1)}%;
-              width: 30%;
-            `}
-          />
-          <img
-            src={frontend2}
-            alt=""
-            css={css`
-              position: absolute;
-              top: 13%;
-              left: ${easeOutQuad(t, -33, 32, 1)}%;
-              width: 15%;
-            `}
-          />
-          <img
-            src={backend}
-            alt=""
-            css={css`
-              position: absolute;
-              bottom: 5%;
-              right: ${easeOutQuad(t, -33, 3, 1)}%;
-              width: 30%;
-            `}
-          />
-          <img
-            src={backend2}
-            alt=""
-            css={css`
-              position: absolute;
-              top: 13%;
-              right: ${easeOutQuad(t, -33, 32, 1)}%;
-              width: 15%;
-            `}
-          />
-        </div>
-      </Content>
+        />
+        <img
+          src={frontend2}
+          alt=""
+          css={css`
+            position: absolute;
+            bottom: 35%;
+            left: ${easeOutQuad(t, -33, 31, 1)}%;
+            width: 17.5%;
+          `}
+        />
+        <img
+          src={backend}
+          alt=""
+          css={css`
+            position: absolute;
+            bottom: 3%;
+            right: ${easeOutQuad(t, -33, 2, 1)}%;
+            width: 30%;
+          `}
+        />
+        <img
+          src={backend2}
+          alt=""
+          css={css`
+            position: absolute;
+            bottom: 35%;
+            right: ${easeOutQuad(t, -33, 31, 1)}%;
+            width: 17.5%;
+          `}
+        />
+      </div>
     </Container>
   )
 }
+export default DesktopSkillsSection

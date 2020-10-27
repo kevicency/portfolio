@@ -15,7 +15,13 @@ export const SectionTitle = styled.h2`
   @media screen and (min-width: ${breakpoints.sm}px) {
     font-size: ${modularScale(5)};
   }
+  @media screen and (min-width: ${breakpoints.md}px) {
+    font-size: ${modularScale(5.5)};
+  }
   @media screen and (min-width: ${breakpoints.lg}px) {
     font-size: ${modularScale(6)};
+  }
+  @media screen and (min-width: ${breakpoints.xl}px) {
+    font-size: ${modularScale(7)};
   }
 `

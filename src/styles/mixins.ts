@@ -1,6 +1,7 @@
 import { css } from '@emotion/core'
+import { modularScale } from 'polished'
 import { neonText, neonText2 } from './animations'
-import { colors, dimensions, fonts } from './variables'
+import { breakpoints, colors, dimensions, fonts } from './variables'
 
 export const getEmSize = (size: number) => size / dimensions.fontSize.regular
 
@@ -65,3 +66,16 @@ export const neonBoxShadow = (color: string, scale = 1) => {
     box-shadow: ${from};
   `
 }
+
+export const sectionTitle = () => css`
+  ${fontFamily('roadRage')};
+  font-size: ${modularScale(4)};
+  color: ${colors.magenta};
+
+  @media screen and (min-width: ${breakpoints.md}px) {
+    font-size: ${modularScale(5)};
+  }
+  @media screen and (min-width: ${breakpoints.xl}px) {
+    font-size: ${modularScale(6)};
+  }
+`
