@@ -159,7 +159,7 @@ export const ExperienceTimeline: React.FC = () => (
     <Entry type="speaker" date="June 2019" title="Insider Dev Tour" subtitle="Berlin, GER">
       Mythbusting PWAs
     </Entry>
-    <Entry type="work" date="2016 - Q1 2019" title="Senior Partner" subtitle="Experts Inside GmbH, Saarbrücken">
+    <Entry type="work" date="Q2 2016 - Q1 2019" title="Senior Partner" subtitle="Experts Inside GmbH, Saarbrücken">
       Development team lead (technical) | Project Management | Consulting
     </Entry>
     <Entry type="speaker" date="Oct 2016" title="ReactJS Day" subtitle="Verona, ITA">
@@ -171,16 +171,21 @@ export const ExperienceTimeline: React.FC = () => (
     <Entry type="speaker" date="July 2014" title="ShareConf" subtitle="Düsseldorf, GER">
       AngularJS SPApps - More App in less code
     </Entry>
-    <Entry type="work" date="Q4 2011 - 2016" title="Full-Stack Developer" subtitle="Experts Inside GmbH, Saarbrücken">
+    <Entry
+      type="work"
+      date="Q4 2012 - Q2 2016"
+      title="Full-Stack Developer"
+      subtitle="Experts Inside GmbH, Saarbrücken"
+    >
       Sharepoint 2013/2016/Online development, customization and consulting, LOB application development.
     </Entry>
-    <Entry type="work" date="Q1 2011 - Q3 2011" title="Junior Developer" subtitle="Data One, Saarbrücken">
+    <Entry type="work" date="Q4 2011 - Q4 2012" title="Junior Developer" subtitle="Data One, Saarbrücken">
       SharePoint 2010/2013 and WPF/Silverlight development.
     </Entry>
-    <Entry type="work" date="2010 - Q1 2011" title="Working Student" subtitle="Data One, Saarbrücken">
+    <Entry type="work" date="Q4 2010 - Q4 2011" title="Working Student" subtitle="Data One, Saarbrücken">
       SharePoint 2010/2013 and WPF/Silverlight development.
     </Entry>
-    <Entry type="work" date="2008 - 2010" title="Working Student" subtitle="Abeba GmbH, St.Ingbert">
+    <Entry type="work" date="2008 - Q4 2010" title="Working Student" subtitle="Abeba GmbH, St.Ingbert">
       Rewriting a legacy LOB application in .NET and migrating the company databse from Pervasive SQL to Microsoft SQL
       Server.
     </Entry>
