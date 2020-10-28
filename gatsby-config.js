@@ -65,6 +65,20 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-react-helmet'
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Kevin Mees | Portfolio`,
+        short_name: `KM`,
+        start_url: `/`,
+        background_color: `#0d0221`,
+        theme_color: `#f6019d`,
+        display: `standalone`,
+        icon: 'src/content/assets/logo_pwa@2x.png'
+      }
+    },
+    'gatsby-plugin-offline'
   ]
 }
