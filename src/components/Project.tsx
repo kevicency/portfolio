@@ -5,29 +5,38 @@ import { neonLink2, neonTextShadow } from '../styles/mixins'
 import { breakpoints, colors } from '../styles/variables'
 
 const Title = styled.a`
+  position: relative;
+  width: 100%;
   font-family: Cabin;
   font-size: ${modularScale(1.5)};
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
   color: ${colors.teal};
+  padding-left: 1.33em;
 
   ${neonLink2(colors.teal)};
 
-  @media screen and (min-width: ${breakpoints.lg}px) {
-    font-size: ${modularScale(2)};
-    white-space: nowrap;
-  }
-
   .fab,
   .fas {
-    margin-right: 0.33em;
+    position: absolute;
+    left: 0;
+    top: 6px;
+  }
+
+  @media screen and (min-width: ${breakpoints.lg}px) {
+    font-size: ${modularScale(2)};
+    .fab,
+    .fas {
+      top: 8px;
+    }
   }
 `
 const Tags = styled.div`
   display: flex;
   flex: 1;
+  width: 100%;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin: 0 -0.25em;
+  margin: 0 -0.25em 0.5em;
 `
 const Tag = styled.span`
   font-size: ${modularScale(1.25)}em;

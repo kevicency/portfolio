@@ -14,7 +14,7 @@ const Container = styled.div`
 const Content = styled.div`
   max-width: ${widths.xl}px;
   margin: 0 auto;
-  padding: 0 2em 6em 2em;
+  padding: 0 3% 6em 3%;
 `
 
 const ProjectList = styled.ul`
@@ -25,8 +25,9 @@ const ProjectList = styled.ul`
 `
 const ProjectItem = styled(Project)`
   flex: 1 0 33%;
-  padding: 0 ${modularScale(1)};
+  padding: 0 2%;
   margin-bottom: ${modularScale(3)};
+  min-width: 320px;
 `
 
 export const ProjectsSection: React.FC = () => {
@@ -107,7 +108,7 @@ export const ProjectsSection: React.FC = () => {
           </ProjectItem>
           <ProjectItem
             title="DCSS Leaderboards"
-            tags={['website', 'pwa', 'react', 'graphql', 'azure-functions', 'mongodb']}
+            tags={['website', 'azure-functions', 'pwa', 'graphql', 'react', 'mongodb']}
             link={{
               url: 'https://dcssleaderboards.z6.web.core.windows.net',
               title: 'View website',

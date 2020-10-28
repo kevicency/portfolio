@@ -21,11 +21,9 @@ const IndexPage = () => (
     <Section id="experience">
       <ExperienceSection />
     </Section>
-    <div style={{ display: 'none' }}>
-      <Section id="projects">
-        <ProjectsSection />
-      </Section>
-    </div>
+    <Section id="projects">
+      <ProjectsSection />
+    </Section>
     <Footer />
   </Html>
 )
