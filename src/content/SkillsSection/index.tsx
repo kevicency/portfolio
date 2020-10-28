@@ -5,9 +5,9 @@ import { DesktopSkillsSection } from './DesktopSkillsSection'
 import { MobileSkillsSection } from './MobileSkillsSection'
 
 export const SkillsSection: React.FC = () => {
-  const { cw } = useClientInfo(widths.xl)
+  const { cw, ch } = useClientInfo(widths.xl)
 
   console.log({ cw })
 
-  return cw > 768 ? <DesktopSkillsSection /> : <MobileSkillsSection />
+  return cw <= 768 || ch < 480 || ch > cw * 1.1 ? <MobileSkillsSection /> : <DesktopSkillsSection />
 }

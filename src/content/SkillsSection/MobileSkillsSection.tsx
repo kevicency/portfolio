@@ -66,7 +66,7 @@ const Skills = styled.div`
     flex: 1 0 350px;
     padding: 2em 2em;
     width: auto;
-    max-height: 44vh;
+    max-height: 75vh;
   }
 `
 
