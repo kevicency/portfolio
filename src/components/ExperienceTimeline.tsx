@@ -13,6 +13,8 @@ import { neonBoxShadow } from '../styles/mixins'
 import { breakpoints, colors } from '../styles/variables'
 
 const StyledTimeline = styled(VerticalTimeline)`
+  width: 90%;
+
   .vertical-timeline-element-content {
     box-shadow: none !important;
     border-radius: 1em;
@@ -32,15 +34,21 @@ const StyledTimeline = styled(VerticalTimeline)`
   }
 
   &::before {
-    width: 10px;
-    left: -5px;
-    top: -40px;
+    width: 9px;
+    left: 15px;
+    top: -20px;
     /* ${neonBoxShadow(colors.azure, 0.25)}; */
     /* animation: ${neonBox(colors.azure, 0.25)} 5s ease-in-out infinite alternate !important; */
     background: linear-gradient(180deg, transparent 0%, ${rgba(colors.yellow, 0.66)} 3%, ${rgba(
   colors.yellow,
   0.66
 )} 97%, transparent 100%);
+  }
+  @media screen and (min-width: ${breakpoints.xl}px) {
+    &::before {
+      left: -5px;
+      top: -40px;
+    }
   }
 `
 const StyledTimelineElement = styled(VerticalTimelineElement)`
@@ -61,17 +69,27 @@ const StyledTimelineElement = styled(VerticalTimelineElement)`
     color: ${colors.white};
   }
 
-  &:nth-of-type(even) .vertical-timeline-element-content {
-    border-left: 3px solid ${props => props.iconStyle!.background};
+  @media screen and (max-width: ${breakpoints.xl - 1}px) {
+     .vertical-timeline-element-content {
+      border-left: 3px solid ${props => props.iconStyle!.background};
+    }
+     .vertical-timeline-element-content-arrow {
+      border-right: 12px solid ${props => props.iconStyle!.background};
+    }
   }
-  &:nth-of-type(even) .vertical-timeline-element-content-arrow {
-    border-right: 12px solid ${props => props.iconStyle!.background};
-  }
-  &:nth-of-type(odd) .vertical-timeline-element-content {
-    border-right: 3px solid ${props => props.iconStyle!.background};
-  }
-  &:nth-of-type(odd) .vertical-timeline-element-content-arrow {
-    border-right: 12px solid ${props => props.iconStyle!.background};
+  @media screen and (min-width: ${breakpoints.xl}px) {
+    &:nth-of-type(even) .vertical-timeline-element-content {
+      border-left: 3px solid ${props => props.iconStyle!.background};
+    }
+    &:nth-of-type(even) .vertical-timeline-element-content-arrow {
+      border-right: 12px solid ${props => props.iconStyle!.background};
+    }
+    &:nth-of-type(odd) .vertical-timeline-element-content {
+      border-right: 3px solid ${props => props.iconStyle!.background};
+    }
+    &:nth-of-type(odd) .vertical-timeline-element-content-arrow {
+      border-right: 12px solid ${props => props.iconStyle!.background};
+    }
   }
 `
 const Title = styled.div`
